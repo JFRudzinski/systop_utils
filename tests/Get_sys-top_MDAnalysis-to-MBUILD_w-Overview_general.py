@@ -28,14 +28,14 @@ import systop_utils
 
 sys_nm = sys.argv[1]
 top_fnm = sys.argv[2]
-traj_fnm = sys.argv[3]
+conf_fnm = sys.argv[3]
 top_format = sys.argv[4]
 if top_format == 'None' or top_format == 'none' or top_format == 'NONE':
     top_format = None
 traj_format = sys.argv[5]
 if traj_format == 'None' or traj_format == 'none' or traj_format == 'NONE':
     traj_format = None
-universe = mda.Universe(top_fnm, traj_fnm, topology_format=top_format, format=traj_format)
+universe = mda.Universe(top_fnm, conf_fnm, topology_format=top_format, format=traj_format)
 
 # In[3]:
 
@@ -89,8 +89,8 @@ system.construct_topology()
 # nb - the mbuild Compound class stores the bonds as a graph (similar to a networkx object)
 #    - it is quite expensive to add the bonds one by one...not even sure what the utility of this is, we might just add
 #       a reference to the bond list in the force field (or vica versa).
-#print('Adding bonds from universe...')
-#system.add_bonds_from_universe(universe)
+print('Adding bonds from universe...')
+system.add_bonds_from_universe(universe)
 
 
 # In[7]:

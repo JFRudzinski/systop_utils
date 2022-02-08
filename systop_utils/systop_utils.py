@@ -7,6 +7,8 @@ class atoms(object):
         # These are atom attributes -- in practice might just be references to another part of the metadata
         self.moltypes = [] 
         self.molnums = [] 
+        self.segids = []
+        self.segindices = []
         self.resnames = [] 
         self.resids = []
         self.elements = [] 
@@ -46,10 +48,8 @@ class Compound(mb.Compound):
         # These are atom attributes -- in practice might just be references to another part of the metadata
         self.atoms = atoms()
         # These summarize the hierarchical structure of the topology
-        # atoms, moltypes, restypes could/should be objects
         self.molnames = None
         self.moltypes = {}
-        #moltypes()
 
     def get_atom_attributes(self, universe):
         # set the conventions for the topology based on the available info
@@ -57,6 +57,8 @@ class Compound(mb.Compound):
         for moltype in self.atoms.moltypes:
             self.moltypes[moltype] = moltypes()
         self.atoms.molnums = get_molnums(universe)
+        self.atoms.segids = get_segids(universe)
+        self.atoms.segindices = get_segindices(universe)
         self.atoms.resnames = get_resnames(universe)
         self.atoms.resids = get_resids(universe)
         self.atoms.elements = get_elements(universe)
@@ -69,7 +71,8 @@ class Compound(mb.Compound):
         # Generate the hierarchical data structure for the topology
         # molecules --> segments --> residues --> particles
         # nb - MUST call get_atom_attributes() first!
-        # nb - Need to generalize for fragments, not just residues
+        # nb - Ignoring segments for the time being. In the only relevant example so far, they simply act as moltype groupings
+        # Q - Should we add another layer to the hierarchy to group moltypes?
         for i_mol, mol_id in enumerate(np.unique(self.atoms.molnums)): # loop over molecules
 
             # get the indices of the current molecule
@@ -113,7 +116,8 @@ class Compound(mb.Compound):
 
     def add_bonds_from_universe(self, universe):
         # add the bonds to the topology structure
-        # This is best of 3 methods I tried, but still rather slow, ~2.5m per 1k bonds on my laptop - faster way?!
+        # nb - this is best of 3 methods I tried, but still rather slow, ~2.5m per 1k bonds on my laptop - faster way?!
+        # nb - it's not clear that we even need this, the advantage is that Compound() stores the bonds in a graph structure
 
         # restrict to 2k bonds for demonstration
         n_bonds_restrict = 2000
@@ -162,13 +166,9 @@ class Compound(mb.Compound):
             # store the number of residues for this molecule
             self.moltypes[moltype].n_res = n_res
             if n_res == 1: # skip the residue level
-                # self.moltypes[moltype].residue_count = {}
-                # self.moltypes[moltype].residue_formula = {}
-                # self.moltypes[moltype].residue_sequence = {}
                 # add the summary attributes of the atoms directly to moltypes
                 self.moltypes[moltype]._add_atom_info()
                 self.moltypes[moltype].atom_count = {}
-                # self.moltypes_restypes_atom_formula[moltype] = {}
                 self.moltypes[moltype].atom_formula = get_compound_formula(self.moltypes[moltype].atom_count, elements_mol_first)
                 continue
 
@@ -197,8 +197,6 @@ class Compound(mb.Compound):
             res_uniq = np.unique(resnames_mol_first)
             # store the unique resnames
             self.moltypes[moltype].resnames = res_uniq
-            # self.moltypes[moltype].restypes[res].atom_count = {}
-            # self.moltypes[moltype].restypes[res].atom_formula = {}
             for i_res, res in enumerate(res_uniq):
                 # add the restype 
                 self.moltypes[moltype].restypes[res] = restypes()
@@ -253,9 +251,6 @@ def get_compound_formula(compound_count, children_names):
     # concatenate to construct a molecular formula
     children_list = ''
     for child in range(len(children_count_tup[0])):
-        # if children_count_tup[1][el] == 1:
-        #     children_list += str(children_count_tup[0][child])
-        # else:
         children_list += str(children_count_tup[0][child])+'('+str(children_count_tup[1][child])+')'
         compound_count[children_count_tup[0][child]] = children_count_tup[1][child]
 
@@ -287,6 +282,18 @@ def get_molnums(universe):
         return universe.atoms.fragindices
     else:
         raise ValueError('No replacement for molnums.') 
+
+def get_segids(universe):
+    if hasattr(universe.atoms, 'segids'):
+        return universe.atoms.segids
+    else:
+        raise ValueError('No replacement for segids.')
+
+def get_segindices(universe):
+    if hasattr(universe.atoms, 'segindices'):
+        return universe.atoms.segindices
+    else:
+        raise ValueError('No replacement for segindices.')
 
 def get_resnames(universe):
     if hasattr(universe.atoms, 'resnames'): 
