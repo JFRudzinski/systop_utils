@@ -1,0 +1,58 @@
+Warning: importing 'simtk.openmm' is deprecated.  Import 'openmm' instead.
+
+
+Getting the atom attributes from universe...
+system.atoms is True
+system.atoms.moltypes is True
+['0' '0' '0' ... '0' '0' '0']
+system.atoms.molnums is True
+[ 0  0  0 ... 53 53 53]
+system.atoms.resnames is True
+['1' '1' '1' ... '1' '1' '1']
+system.atoms.resids is True
+[1 1 1 ... 1 1 1]
+system.atoms.elements is True
+['2' '2' '2' ... '5' '4' '4']
+system.atoms.names is True
+['2' '2' '2' ... '5' '4' '4']
+
+
+Constructing topology...
+Adding bonds from universe...
+Adding positions from universe...
+
+
+Getting the topology summary...
+
+
+SYSTEM SUMMARY
+--------------
+The system is <1_methyl_naphthalene 1134 particles, non-periodic, 1188 bonds, id: 140458299015696>
+
+
+MOLTYPE = 0:	<0 21 particles, non-periodic, 22 bonds, id: 140458299587088>
+Number of molecules of this type: 54
+A dictionary with the counts of each atom element/type for this molecule type: {'1': 7, '2': 3, '3': 1, '4': 7, '5': 3}
+The formula of this molecule type, with respect to the atoms: 1(7)2(3)3(1)4(7)5(3)
+	 ATOMS:
+		<2 pos=(-9.1562,-9.8219,-10.3730), 0 bonds, id: 140458299587856>
+		<2 pos=(-7.7232,-9.8029,-10.3730), 0 bonds, id: 140458299587664>
+		<2 pos=(-9.8722,-8.5849,-10.3730), 0 bonds, id: 140458299588112>
+		<1 pos=(-9.7812,-11.0959,-10.3730), 0 bonds, id: 140458299588304>
+		<1 pos=(-7.0322,-8.5739,-10.3730), 0 bonds, id: 140458299588496>
+		<1 pos=(-9.1382,-7.3739,-10.3730), 0 bonds, id: 140458299587600>
+		<1 pos=(-6.9832,-11.0089,-10.3730), 0 bonds, id: 140458299158800>
+		<1 pos=(-7.7362,-7.3619,-10.3730), 0 bonds, id: 140458299158992>
+		<3 pos=(-11.3522,-8.4179,-10.3730), 0 bonds, id: 140458299159184>
+		<1 pos=(-9.0422,-12.2919,-10.3730), 0 bonds, id: 140458299159440>
+		<1 pos=(-7.6412,-12.2479,-10.3730), 0 bonds, id: 140458299159632>
+		<4 pos=(-10.7942,-11.2069,-10.3730), 0 bonds, id: 140458299159824>
+		<4 pos=(-6.0082,-8.5359,-10.3730), 0 bonds, id: 140458299160016>
+		<4 pos=(-9.6132,-6.4659,-10.3730), 0 bonds, id: 140458299160208>
+		<4 pos=(-5.9592,-11.0069,-10.3730), 0 bonds, id: 140458299160400>
+		<4 pos=(-7.2292,-6.4739,-10.3730), 0 bonds, id: 140458299160592>
+		<5 pos=(-11.6642,-7.8599,-9.4870), 0 bonds, id: 140458299160784>
+		<5 pos=(-11.6642,-7.8599,-11.2590), 0 bonds, id: 140458299161040>
+		<5 pos=(-11.9332,-9.3359,-10.3730), 0 bonds, id: 140458299161232>
+		<4 pos=(-9.5222,-13.1949,-10.3730), 0 bonds, id: 140458299161424>
+		<4 pos=(-7.1022,-13.1179,-10.3730), 0 bonds, id: 140458299161616>

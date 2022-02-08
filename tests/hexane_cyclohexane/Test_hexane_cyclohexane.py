@@ -3,10 +3,10 @@
 import os
 
 py_interp = '/Users/joedinski/miniconda3/envs/mosdef37/bin/python3.7'
-path = '/Users/joedinski/work/Projects/FAIRmat/nomad/dependencies/parsers/lammps/tests/data/1_methyl_naphthalene/'
-sys_nm = '1_methyl_naphthalene'
+path = '/Users/joedinski/work/Projects/FAIRmat/nomad/dependencies/parsers/lammps/tests/data/hexane_cyclohexane/'
+sys_nm = 'hexane_cyclohexane'
 top_fnm = path+'data.'+sys_nm
-conf_fnm = path+'naph_298_eq.lammpstrj'
+conf_fnm = path+sys_nm+'_nvt_20ps.lammpstrj'
 top_format = 'DATA'
 conf_format = 'LAMMPSDUMP'
 

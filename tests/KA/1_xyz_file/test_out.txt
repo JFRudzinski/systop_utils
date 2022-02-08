@@ -1,0 +1,19 @@
+Warning: importing 'simtk.openmm' is deprecated.  Import 'openmm' instead.
+Traceback (most recent call last):
+  File "/Users/joedinski/miniconda3/envs/mosdef37/lib/python3.7/site-packages/MDAnalysis/core/universe.py", line 122, in _topology_from_file_like
+    topology = p.parse(**kwargs)
+  File "/Users/joedinski/miniconda3/envs/mosdef37/lib/python3.7/site-packages/MDAnalysis/topology/LAMMPSParser.py", line 278, in parse
+    raise ValueError("Data file was missing Atoms section")
+ValueError: Data file was missing Atoms section
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "../../Get_sys-top_MDAnalysis-to-MBUILD_w-Overview_general.py", line 38, in <module>
+    universe = mda.Universe(top_fnm, conf_fnm, topology_format=top_format, format=conf_format)
+  File "/Users/joedinski/miniconda3/envs/mosdef37/lib/python3.7/site-packages/MDAnalysis/core/universe.py", line 338, in __init__
+    **kwargs)
+  File "/Users/joedinski/miniconda3/envs/mosdef37/lib/python3.7/site-packages/MDAnalysis/core/universe.py", line 140, in _topology_from_file_like
+    "Error: {2}".format(topology_file, parser, err))
+ValueError: Failed to construct topology from file /Users/joedinski/work/Projects/FAIRmat/LAMMPS_DEV/MD_Overview/KA/1_xyz_file/log.lammps with parser <class 'MDAnalysis.topology.LAMMPSParser.DATAParser'>.
+Error: Data file was missing Atoms section

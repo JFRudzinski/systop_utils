@@ -32,10 +32,10 @@ conf_fnm = sys.argv[3]
 top_format = sys.argv[4]
 if top_format == 'None' or top_format == 'none' or top_format == 'NONE':
     top_format = None
-traj_format = sys.argv[5]
-if traj_format == 'None' or traj_format == 'none' or traj_format == 'NONE':
-    traj_format = None
-universe = mda.Universe(top_fnm, conf_fnm, topology_format=top_format, format=traj_format)
+conf_format = sys.argv[5]
+if conf_format == 'None' or conf_format == 'none' or conf_format == 'NONE':
+    conf_format = None
+universe = mda.Universe(top_fnm, conf_fnm, topology_format=top_format, format=conf_format)
 
 # In[3]:
 
